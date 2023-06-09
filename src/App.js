@@ -1,6 +1,6 @@
-import logo from './logo.svg';
+
 import SearchInput from './Components/search';
-import Card from './Components/recipe_card';
+import ExpandMore from './Components/recipe_card';
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <>
       
       <SearchInput/>
-      <Card/>
+      <ExpandMore/>
       </>
         
   );

@@ -1,13 +1,27 @@
-import Card from "./recipe_card"
-const SearchInput =() => {
-    return(
-        <>
-        <div className="SearchContainer">
-        <input type="search" id="recipe_input" name="recipe_search" placeholder="Place Ingredients"></input>
-        <button type="button" id="search_button">Seach Recipe</button>
-        </div>
-       
-        </>
-    )
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import Chip from '@mui/material/Chip';
+import SearchIcon from '@mui/icons-material/Search';
+
+export default function FullWidthTextField() {
+  return (
+    <>
+    <Box
+      sx={{
+        width: 500,
+        maxWidth: '100%',
+      }}
+    >
+      <TextField fullWidth label="Ingrediants" id="fullWidth" margin='dense' color='primary'/>
+      
+    </Box>
+    
+    <Button variant="outlined" endIcon={<AddIcon/>}>Add</Button>
+    <Button variant="outlined" endIcon={<SearchIcon/>}>Search Recipes</Button>
+    <Chip label="Egg" variant="outlined" color='primary'/>
+    </>
+  );
 }
-export default SearchInput
