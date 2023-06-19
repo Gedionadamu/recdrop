@@ -7,11 +7,12 @@ import { ClassNames } from '@emotion/react';
 
 function App() {
   const [Input, setInput] = useState("")
+  const [add, setAdd] = useState("")
   return (
     
       <>
       <div className='container'>
-      <SearchInput setInput={setInput}/>
+      <SearchInput setInput={setInput} setAdd={setAdd} Input={Input}/>
       <ExpandMore/>
       </div>
       </>

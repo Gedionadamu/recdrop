@@ -12,16 +12,19 @@ var recipeInput = []
 var addBtn = document.querySelector(".addBtn")
 var searchInput = document.querySelector(".searchInput")
 
-export default function FullWidthTextField({setInput}) {
+export default function FullWidthTextField({setInput, setAdd, Input}) {
 
   const handleChange= (e) => {
     
     setInput(e.target.value)
     console.log(e.target.value)
   }
-  function addRecipe(e){
-    e.preventDefault();
+  function addRecipe(){
+    setAdd(Input)
+    recipeInput.push(Input)
+    console.log(recipeInput)
   }
+  const Idng = recipeInput.map(foodItem => <li><Chip label={foodItem} variant="outlined" color='primary'/></li>)
   return (
     
     <>
@@ -38,7 +41,7 @@ export default function FullWidthTextField({setInput}) {
     
     <Button variant="outlined" endIcon={<AddIcon/>} className='addBtn' onClick={addRecipe}>Add</Button>
     <Button variant="outlined" endIcon={<SearchIcon/>}>Search Recipes</Button>
-    <Chip label="Egg" variant="outlined" color='primary'/>
+    <ul>{Idng}</ul>
     </>
   );
 }
