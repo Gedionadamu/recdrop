@@ -6,13 +6,14 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import Chip from '@mui/material/Chip';
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 
-var recipeInput = []
-var addBtn = document.querySelector(".addBtn")
-var searchInput = document.querySelector(".searchInput")
 
-export default function FullWidthTextField({setInput, setAdd, Input}) {
+
+
+export default function FullWidthTextField({setInput, setAdd, Input, recipeInput, setrecipeInput}) {
 
   const handleChange= (e) => {
     
@@ -21,10 +22,18 @@ export default function FullWidthTextField({setInput, setAdd, Input}) {
   }
   function addRecipe(){
     setAdd(Input)
-    recipeInput.push(Input)
+    const newrecipes = [...recipeInput, Input]
+    setrecipeInput(newrecipes)
     console.log(recipeInput)
   }
-  const Idng = recipeInput.map(foodItem => <li><Chip label={foodItem} variant="outlined" color='primary'/></li>)
+  // Finish this code block
+  function handleDelete(removeditem){
+    console.log("hi")
+   const removed = [recipeInput.filter(ingredients => ingredients !== removeditem)]
+   setrecipeInput(removed)
+  }
+  
+  const Idng = recipeInput.map(foodItem => <li><Chip key={foodItem} label={foodItem} variant="outlined" onDelete={handleDelete} /></li>)
   return (
     
     <>
@@ -41,7 +50,7 @@ export default function FullWidthTextField({setInput, setAdd, Input}) {
     
     <Button variant="outlined" endIcon={<AddIcon/>} className='addBtn' onClick={addRecipe}>Add</Button>
     <Button variant="outlined" endIcon={<SearchIcon/>}>Search Recipes</Button>
-    <ul>{Idng}</ul>
+    <ul>{Idng} </ul>
     </>
   );
 }
