@@ -10,14 +10,20 @@ function App() {
   const [add, setAdd] = useState("")
   const [recipeInput, setrecipeInput] = useState([])
   return (
-    
-      <>
+
+    <>
       <div className='container'>
-      <SearchInput setInput={setInput} setAdd={setAdd} Input={Input} setrecipeInput={setrecipeInput} recipeInput={recipeInput}/>
-      <ExpandMore/>
+        <SearchInput
+          setInput={setInput}
+          setAdd={setAdd}
+          Input={Input}
+          setrecipeInput={setrecipeInput}
+          recipeInput={recipeInput}
+        />
+        <ExpandMore />
       </div>
-      </>
-        
+    </>
+
   );
 }
 
