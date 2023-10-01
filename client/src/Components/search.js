@@ -27,7 +27,7 @@ export default function FullWidthTextField({ setInput, setAdd, Input, recipeInpu
     setAdd(Input)
     const newrecipes = [...recipeInput, Input]
     setrecipeInput(newrecipes)
-    console.log(recipeInput)
+    console.log(newrecipes)
   }
   // Finish this code block
   function handleDelete(removeditem) {
