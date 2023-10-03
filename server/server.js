@@ -22,5 +22,15 @@ app.listen(PORT, () => {
     console.log(`server listening on  ${PORT}`)
 });
 
-app.use("/server/user", userRoutes)
-app.use("/server/auth", authRoutes)
+app.use("/server/user", userRoutes);
+app.use("/server/auth", authRoutes);
+
+app.use((err, req,res, next)=>{
+    const statuseCode = err.statuseCode || 500;
+    const message = err.message || " Internal Server Error";
+    return res.status(statuseCode).json({
+        success: false,
+        message,
+        statuseCode
+    })
+});
