@@ -30,7 +30,7 @@ export default function SignUp(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const res =  fetch("http://localhost:8000/server/auth/signup", {
+        const res =  fetch("/server/auth/signup", {
             method:'POST',
             headers:{
                 "Content-Type":"application/json"},
