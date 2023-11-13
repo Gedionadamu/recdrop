@@ -30,13 +30,21 @@ export default function SignUp(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const res =  fetch("/server/auth/signup", {
+        const res =  fetch("http://localhost:3001/server/auth/signup", {
             method:'POST',
             headers:{
-                "Content-Type":"application/json"},
-            body: JSON.stringify(data)
+              'Content-Type' : 'application/json',
+             'Access-Control-Allow-Origin': 'no-cors',
+              
+            },
+          
+            body: JSON.stringify({
+              username: data.get('username'),
+              email: data.get('email'),
+              password: data.get('password'),
+            })
         });
-        // const userinfo = await res.json();
+         
         console.log({
           username: data.get('username'),
           email: data.get('email'),
