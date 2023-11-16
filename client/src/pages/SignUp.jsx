@@ -10,6 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { red } from '@mui/material/colors';
 
 function Copyright(props) {
     return (
@@ -27,29 +29,40 @@ function Copyright(props) {
   const defaultTheme = createTheme();
 
 export default function SignUp(){
+    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const res =  fetch("http://localhost:3001/server/auth/signup", {
-            method:'POST',
-            headers:{
-              'Content-Type' : 'application/json',
-             'Access-Control-Allow-Origin': 'no-cors',
+        try{
+          setLoading(true)
+          const data = new FormData(event.currentTarget);
+          const res =  fetch("http://localhost:3001/server/auth/signup", {
+              method:'POST',
+              headers:{
+                'Content-Type' : 'application/json',
+               'Access-Control-Allow-Origin': 'no-cors',
+                
+              },
+            
+              body: JSON.stringify({
+                username: data.get('username'),
+                email: data.get('email'),
+                password: data.get('password'),
+              })
               
-            },
+          });
+          setLoading(false);
+          setError(false)
           
-            body: JSON.stringify({
-              username: data.get('username'),
-              email: data.get('email'),
-              password: data.get('password'),
-            })
-        });
-         
-        console.log({
-          username: data.get('username'),
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+        }
+        catch(error){
+          setLoading(false)
+          setError(true)
+
+        }
+        
+        
+      
       };
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -106,13 +119,14 @@ export default function SignUp(){
                 </Grid>
               
               </Grid>
+              
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                {loading ? 'Signing Up...':'Sign Up'}
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
