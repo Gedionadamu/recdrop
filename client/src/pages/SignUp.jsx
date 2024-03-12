@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { red } from '@mui/material/colors';
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -31,6 +32,7 @@ function Copyright(props) {
 export default function SignUp(){
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
@@ -53,6 +55,7 @@ export default function SignUp(){
           });
           setLoading(false);
           setError(false)
+          navigate('/signin')
           
         }
         catch(error){
