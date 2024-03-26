@@ -1,6 +1,5 @@
 
-import SearchInput from './Components/search';
-import ExpandMore from './Components/recipe_card';
+
 import './App.css';
 import { useState } from 'react';
 import { ClassNames } from '@emotion/react';
@@ -13,25 +12,7 @@ import Profile from './pages/Profile';
 import Header from './Components/Header';
 
 function App() {
-  // const [Input, setInput] = useState("")
-  // const [add, setAdd] = useState("")
-  // const [recipeInput, setrecipeInput] = useState([])
-  // return (
-
-  //   <>
-  //     <div className='container'>
-  //       <SearchInput
-  //         setInput={setInput}
-  //         setAdd={setAdd}
-  //         Input={Input}
-  //         setrecipeInput={setrecipeInput}
-  //         recipeInput={recipeInput}
-  //       />
-  //       <ExpandMore />
-  //     </div>
-  //   </>
-
-  //);
+ 
 
   return <BrowserRouter>
   <Header />
