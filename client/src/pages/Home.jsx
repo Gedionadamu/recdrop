@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import SearchInput from '../Components/search';
-import ExpandMore from '../Components/recipe_card';
+
 
 export default function Home(){
     
@@ -19,7 +19,7 @@ export default function Home(){
                 setrecipeInput={setrecipeInput}
                 recipeInput={recipeInput}
               />
-              <ExpandMore />
+              
             </div>
           </>
       
