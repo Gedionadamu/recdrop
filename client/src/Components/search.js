@@ -5,17 +5,11 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import Chip from "@mui/material/Chip";
 import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useState, useEffect } from "react";
-import card from "./recipe_card"
-import { json } from "react-router-dom";
 
+import card from "./recipe_card";
 
-let API = "013fd8b3a54f4520995e24120d4dc79d"
-let recieved = []
-
-
+let API = "013fd8b3a54f4520995e24120d4dc79d";
+let recieved = [];
 
 export default function FullWidthTextField({
   setInput,
@@ -29,50 +23,36 @@ export default function FullWidthTextField({
     console.log(e.target.value);
   };
   function addRecipe() {
-    setAdd(Input);
+    let key = 0;
+    setAdd({ Input });
     const newrecipes = [...recipeInput, Input];
     setrecipeInput(newrecipes);
     console.log(newrecipes);
   }
-  // Finish this code block
-  function handleDelete(removeditem) {
-    console.log("hi");
-    const removed = [
-      recipeInput.filter((ingredients) => ingredients !== removeditem),
-    ];
-    setrecipeInput(removed);
-  }
   
+  const handleDelete = (chipToDelete) => () => {
+    console.log(chipToDelete)
+    setrecipeInput((recipeInput) => recipeInput.filter((chip) => chip !== chipToDelete));
+  };
+
   function handleSearch() {
     console.log("whatever");
     const apirecipe = recipeInput.join(",+");
-    async function fetchRecipe(){
-    const response = await fetch(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API}&ingredients=${apirecipe}&number=5`
-    )
-    const json = await response.json();
-    
-    recieved = []
-    recieved.push(json)
-    console.log(recieved)
+    async function fetchRecipe() {
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API}&ingredients=${apirecipe}&number=5`
+      );
+      const json = await response.json();
+
+      recieved = [];
+      recieved.push(json);
+      console.log(recieved);
+    }
+    fetchRecipe();
   }
-  fetchRecipe()
-    
-  }
+
   
-  const cards = card.map(recieved)
-  const Idng = recipeInput.map((foodItem) => (
-    <li>
-      <Chip
-        key={foodItem}
-        label={foodItem}
-        variant="outlined"
-        onDelete={handleDelete}
-      />
-    </li>
-  ));
-  
-  
+
   return (
     <>
       <Box
@@ -107,9 +87,13 @@ export default function FullWidthTextField({
       >
         Search Recipes
       </Button>
-      <ul>{Idng} </ul>
-      <ul>{cards} </ul>
-
+      <ul>{recipeInput.map((foodItem) => (
+    
+    <li key={foodItem}>
+      <Chip label={foodItem} variant="outlined" onDelete={handleDelete(foodItem)} />
+    </li>
+  ))} </ul>
+      {/* <ul>{cards} </ul> */}
     </>
   );
 }
