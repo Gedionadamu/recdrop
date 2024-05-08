@@ -29,10 +29,11 @@ export default function FullWidthTextField({
     setrecipeInput(newrecipes);
     console.log(newrecipes);
   }
-  
+
   const handleDelete = (chipToDelete) => () => {
-    console.log(chipToDelete)
-    setrecipeInput((recipeInput) => recipeInput.filter((chip) => chip !== chipToDelete));
+    setrecipeInput((recipeInput) =>
+      recipeInput.filter((chip) => chip !== chipToDelete)
+    );
   };
 
   function handleSearch() {
@@ -50,8 +51,6 @@ export default function FullWidthTextField({
     }
     fetchRecipe();
   }
-
-  
 
   return (
     <>
@@ -87,12 +86,17 @@ export default function FullWidthTextField({
       >
         Search Recipes
       </Button>
-      <ul>{recipeInput.map((foodItem) => (
-    
-    <li key={foodItem}>
-      <Chip label={foodItem} variant="outlined" onDelete={handleDelete(foodItem)} />
-    </li>
-  ))} </ul>
+      <ul>
+        {recipeInput.map((foodItem) => (
+          <li key={foodItem}>
+            <Chip
+              label={foodItem}
+              variant="outlined"
+              onDelete={handleDelete(foodItem)}
+            />
+          </li>
+        ))}{" "}
+      </ul>
       {/* <ul>{cards} </ul> */}
     </>
   );
