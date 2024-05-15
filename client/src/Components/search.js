@@ -6,10 +6,11 @@ import AddIcon from "@mui/icons-material/Add";
 import Chip from "@mui/material/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 
-import card from "./recipe_card";
+import RecipeReviewCard from "./recipe_card";
 
 let API = "013fd8b3a54f4520995e24120d4dc79d";
 let recieved = [];
+let clean = [];
 
 export default function FullWidthTextField({
   setInput,
@@ -20,14 +21,11 @@ export default function FullWidthTextField({
 }) {
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
   };
   function addRecipe() {
-    let key = 0;
     setAdd({ Input });
     const newrecipes = [...recipeInput, Input];
     setrecipeInput(newrecipes);
-    console.log(newrecipes);
   }
 
   const handleDelete = (chipToDelete) => () => {
@@ -37,7 +35,6 @@ export default function FullWidthTextField({
   };
 
   function handleSearch() {
-    console.log("whatever");
     const apirecipe = recipeInput.join(",+");
     async function fetchRecipe() {
       const response = await fetch(
@@ -48,6 +45,8 @@ export default function FullWidthTextField({
       recieved = [];
       recieved.push(json);
       console.log(recieved);
+      clean = recieved[0];
+      console.log(clean);
     }
     fetchRecipe();
   }
@@ -88,16 +87,25 @@ export default function FullWidthTextField({
       </Button>
       <ul>
         {recipeInput.map((foodItem) => (
-          <li key={foodItem}>
+          <ul key={foodItem}>
             <Chip
               label={foodItem}
               variant="outlined"
               onDelete={handleDelete(foodItem)}
             />
-          </li>
-        ))}{" "}
+          </ul>
+        ))}
       </ul>
-      {/* <ul>{cards} </ul> */}
+      <ul>
+        {clean.map((something)=>(Object.keys(something).map((keys) => (
+          <RecipeReviewCard
+            key={recieved[keys]}
+            title={recieved[keys]}
+            image={recieved[keys]}
+            alt={recieved[keys]}
+          />
+        ))))}
+      </ul>
     </>
   );
 }
