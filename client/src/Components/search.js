@@ -41,11 +41,10 @@ export default function FullWidthTextField({
         `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API}&ingredients=${apirecipe}&number=5`
       );
       const json = await response.json();
-      recieved=[]
+      recieved = [];
       recieved.push(json);
 
       setRecieved(recieved[0]);
-      console.log(recieved[0]);
     }
     fetchRecipe();
   }
@@ -54,62 +53,87 @@ export default function FullWidthTextField({
     <>
       <Box
         sx={{
-          width: 500,
-          maxWidth: "100%",
+          display:"flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems:"center"
+          
         }}
       >
-        <TextField
-          fullWidth
-          label="Ingrediants"
-          id="fullWidth"
-          margin="dense"
-          color="primary"
-          className="searchInput"
-          onChange={handleChange}
-        />
-      </Box>
+        <Box
+          sx={{
+            width: 500,
+            maxWidth: "100%",
+          }}
+        >
+          <TextField
+            fullWidth
+            label="Ingrediants"
+            id="fullWidth"
+            margin="dense"
+            color="primary"
+            className="searchInput"
+            onChange={handleChange}
+          />
+        </Box>
+<Box sx={{display:"inline",
+  m:1,
+  p:1
+}}>
+        <Button
+          sx={{width:1/8,
+            m:1
+          }}
+          variant="outlined"
+          endIcon={<AddIcon />}
+          className="addBtn"
+          onClick={addRecipe}
+        >
+          Add
+        </Button>
+        <Button
+          variant="outlined"
+          endIcon={<SearchIcon />}
+          onClick={handleSearch}
+        >
+          Search Recipes
+        </Button>
+        </Box>
 
-      <Button
-        variant="outlined"
-        endIcon={<AddIcon />}
-        className="addBtn"
-        onClick={addRecipe}
-      >
-        Add
-      </Button>
-      <Button
-        variant="outlined"
-        endIcon={<SearchIcon />}
-        onClick={handleSearch}
-      >
-        Search Recipes
-      </Button>
-      <ul>
-        {recipeInput.map((foodItem) => (
-          <ul key={foodItem}>
-            <Chip
-              label={foodItem}
-              variant="outlined"
-              onDelete={handleDelete(foodItem)}
-            />
-          </ul>
-        ))}
-      </ul>
-      <ul>
-        {recieved.map((test) => (
-          <ul key={test.id}>
-            <RecipeReviewCard
-            title={test.title}
-            image={test.image}
-            alt={test.alt}
-              
-            />
+        <ul>
+          {recipeInput.map((foodItem) => (
+            <ul key={foodItem}>
+              <Chip
+                label={foodItem}
+                variant="outlined"
+                onDelete={handleDelete(foodItem)}
+              />
             </ul>
-            // <div key={test.id}>{console.log(test.title)}</div>
-            
+          ))}
+        </ul>
+
+        <Box sx={{
+          display:"flex",
+          flexWrap:"wrap",
+          m:1,
+          p:1
+        }}>
           
-        ))}
-      </ul>
+            {recieved.map((test) => (
+               
+                <RecipeReviewCard 
+                  
+                  key={test.id}
+                  title={test.title}
+                  image={test.image}
+                  alt={test.alt}
+                />
+              
+            ))}
+          
+          </Box>
+        
+      </Box>
     </>
   );
 }

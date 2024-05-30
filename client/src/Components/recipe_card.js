@@ -14,7 +14,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 export default function RecipeReviewCard(props) {
   
   return (
-    <Card sx={{ maxWidth: 345 }} >
+    <Card sx={{ maxWidth: 250,
+      m:1
+    }} >
       <CardHeader title={props.title} />
       <CardMedia
         component="img"
