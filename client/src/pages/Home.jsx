@@ -8,6 +8,7 @@ export default function Home(){
         const [Input, setInput] = useState("")
         const [add, setAdd] = useState("")
         const [recipeInput, setrecipeInput] = useState([])
+        const [recieved, setRecieved] = useState([])
         return (
       
           <>
@@ -18,6 +19,8 @@ export default function Home(){
                 Input={Input}
                 setrecipeInput={setrecipeInput}
                 recipeInput={recipeInput}
+                recieved={recieved}
+                setRecieved={setRecieved}
               />
               
             </div>

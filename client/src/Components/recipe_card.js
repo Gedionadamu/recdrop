@@ -11,15 +11,16 @@ import Typography from "@mui/material/Typography";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function RecipeReviewCard({props}) {
+export default function RecipeReviewCard(props) {
+  
   return (
-    <Card sx={{ maxWidth: 345 }} key={props.id}>
+    <Card sx={{ maxWidth: 345 }} >
       <CardHeader title={props.title} />
       <CardMedia
         component="img"
         height="194"
         image={props.image}
-        alt={props.title}
+        alt={props.alt}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

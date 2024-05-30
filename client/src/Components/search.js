@@ -9,8 +9,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import RecipeReviewCard from "./recipe_card";
 
 let API = "013fd8b3a54f4520995e24120d4dc79d";
-let recieved = [];
-let clean = [];
 
 export default function FullWidthTextField({
   setInput,
@@ -18,6 +16,8 @@ export default function FullWidthTextField({
   Input,
   recipeInput,
   setrecipeInput,
+  recieved,
+  setRecieved,
 }) {
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -41,12 +41,11 @@ export default function FullWidthTextField({
         `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API}&ingredients=${apirecipe}&number=5`
       );
       const json = await response.json();
-
-      recieved = [];
+      recieved=[]
       recieved.push(json);
-      console.log(recieved);
-      clean = recieved[0];
-      console.log(clean);
+
+      setRecieved(recieved[0]);
+      console.log(recieved[0]);
     }
     fetchRecipe();
   }
@@ -97,14 +96,19 @@ export default function FullWidthTextField({
         ))}
       </ul>
       <ul>
-        {clean.map((something)=>(Object.keys(something).map((keys) => (
-          <RecipeReviewCard
-            key={recieved[keys]}
-            title={recieved[keys]}
-            image={recieved[keys]}
-            alt={recieved[keys]}
-          />
-        ))))}
+        {recieved.map((test) => (
+          <ul key={test.id}>
+            <RecipeReviewCard
+            title={test.title}
+            image={test.image}
+            alt={test.alt}
+              
+            />
+            </ul>
+            // <div key={test.id}>{console.log(test.title)}</div>
+            
+          
+        ))}
       </ul>
     </>
   );
