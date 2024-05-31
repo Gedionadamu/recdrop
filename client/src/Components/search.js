@@ -46,6 +46,7 @@ export default function FullWidthTextField({
       recieved.push(json);
 
       setRecieved(recieved[0]);
+      console.log(recieved[0]);
     }
     fetchRecipe();
   }
@@ -54,17 +55,16 @@ export default function FullWidthTextField({
     <>
       <Box
         sx={{
-          display:"flex",
+          display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems:"center",
-          pt:15
-          
-          
+          alignItems: "center",
+          pt: 7,
         }}
       >
-        <Typography variant="h2"
-        sx={{letterSpacing: '.3rem',}}>SILVER RECIPE</Typography>
+        <Typography variant="h2" sx={{ letterSpacing: ".3rem", mb: 3 }}>
+          SILVER RECIPE
+        </Typography>
         <Box
           sx={{
             width: 500,
@@ -81,39 +81,34 @@ export default function FullWidthTextField({
             onChange={handleChange}
           />
         </Box>
-<Box sx={{display:"inline",
-  m:1,
-  p:1
-}}>
-        <Button
-          sx={{width:1/8,
-            m:1
+        <Box sx={{ display: "inline", m: 1, p: 1 }}>
+          <Button
+            sx={{ width: 1 / 8, m: 1 }}
+            variant="outlined"
+            endIcon={<AddIcon />}
+            className="addBtn"
+            onClick={addRecipe}
+          >
+            Add
+          </Button>
+          <Button
+            variant="outlined"
+            endIcon={<SearchIcon />}
+            onClick={handleSearch}
+          >
+            Search Recipes
+          </Button>
+        </Box>
+        <Box sx={{ color: "gray",  }}></Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: "30rem", borderBottom: .5,
+            borderTop:.5
           }}
-          variant="outlined"
-          endIcon={<AddIcon />}
-          className="addBtn"
-          onClick={addRecipe}
         >
-          Add
-        </Button>
-        <Button
-          variant="outlined"
-          endIcon={<SearchIcon />}
-          onClick={handleSearch}
-        >
-          Search Recipes
-        </Button>
-        </Box>
-        <Box>
-          <Typography sx={{color:"gray", borderBottom:1}}>Ingrediants</Typography>
-        </Box>
-<Box sx={{
-          display:"flex",
-          flexDirection:"row",
-          flexWrap:"wrap",
-         
-        }}>
-        
           {recipeInput.map((foodItem) => (
             <ul key={foodItem}>
               <Chip
@@ -123,29 +118,26 @@ export default function FullWidthTextField({
               />
             </ul>
           ))}
-        
         </Box>
-        <Box sx={{
-          display:"flex",
-          flexWrap:"wrap",
-          m:1,
-          p:1
-        }}>
-          
-            {recieved.map((test) => (
-               
-                <RecipeReviewCard 
-                  
-                  key={test.id}
-                  title={test.title}
-                  image={test.image}
-                  alt={test.alt}
-                />
-              
-            ))}
-          
-          </Box>
-        
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            m: 1,
+            p: 1,
+          }}
+        >
+          {recieved.map((test) => (
+            <RecipeReviewCard
+              key={test.id}
+              id={test.id}
+              title={test.title}
+              image={test.image}
+              alt={test.alt}
+              missed={test.missedIngredientCount}
+            />
+          ))}
+        </Box>
       </Box>
     </>
   );

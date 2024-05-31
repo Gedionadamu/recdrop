@@ -10,9 +10,18 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
+import { json } from "react-router-dom";
+let detail = []
 export default function RecipeReviewCard(props) {
-  
+  async function fetchBulk() {
+    const response2 = await fetch(
+      `https://api.spoonacular.com/recipes/informationBulk?apiKey=013fd8b3a54f4520995e24120d4dc79d&ids=${props.id}`
+    );
+    const json = await response2.json();
+    detail=[]
+    detail.push(json)
+  console.log(detail[0])}
+  fetchBulk()
   return (
     <Card sx={{ maxWidth: 250,
       m:1
@@ -26,9 +35,8 @@ export default function RecipeReviewCard(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          Missing Ingrediants {props.missed}.
+          
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
