@@ -58,10 +58,13 @@ export default function FullWidthTextField({
           flexDirection: "column",
           justifyContent: "center",
           alignItems:"center",
+          pt:15
           
           
         }}
       >
+        <Typography variant="h2"
+        sx={{letterSpacing: '.3rem',}}>SILVER RECIPE</Typography>
         <Box
           sx={{
             width: 500,
@@ -102,7 +105,7 @@ export default function FullWidthTextField({
         </Button>
         </Box>
         <Box>
-          <Typography sx={{color:"gray"}}>Ingrediants</Typography>
+          <Typography sx={{color:"gray", borderBottom:1}}>Ingrediants</Typography>
         </Box>
 <Box sx={{
           display:"flex",

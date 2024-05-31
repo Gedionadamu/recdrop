@@ -37,12 +37,12 @@ function Header() {
   };
 
   return (
-    <AppBar position="static" color ="grey" >
+    <AppBar position="static" color ="grey" elevation={0}  >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to='/'style={{ textDecoration: 'none' }}>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -50,9 +50,9 @@ function Header() {
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'cormorant Garamond',
-              fontWeight: 700,
+              fontWeight: 500,
               
-              color: 'black',
+              color: 'Black',
               textDecoration: 'none',
             }}
           >
@@ -62,7 +62,7 @@ function Header() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
+              size="small"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -71,7 +71,7 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            <Menu 
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -86,13 +86,13 @@ function Header() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none'  },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                 
-                  <Typography textAlign="center"><Link to={page} style={{ textDecoration: 'none' }}>{page}</Link></Typography>
+                  <Typography textAlign="center"  textDecoration="none"sx={{fontFamily: 'cormorant Garamond',}}><Link to={page} color="black"style={{ textDecoration: 'none' }} >{page}</Link></Typography>
                   
                   
                 </MenuItem>
@@ -104,12 +104,12 @@ function Header() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              
+              fontFamily: 'cormorant Garamond',
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
@@ -117,12 +117,12 @@ function Header() {
           >
             Silver Recipe
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, flexDirection:"row-reverse"}}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ m: 2, color: 'white', display: 'block', fontFamily: 'cormorant Garamond', color:"black" }}
               >
                 <Link to={page} style={{ textDecoration: 'none' }}>{page}</Link>
               </Button>
@@ -153,7 +153,7 @@ function Header() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"><Link to={setting} style={{ textDecoration: 'none' }}>{setting}</Link></Typography>
+                  <Typography textAlign="center" sx={{fontFamily:"cormorant Garamond"}}><Link to={setting} style={{ textDecoration: 'none' }}>{setting}</Link></Typography>
                 </MenuItem>
               ))}
             </Menu>
