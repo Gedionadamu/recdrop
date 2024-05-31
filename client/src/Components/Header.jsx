@@ -49,9 +49,9 @@ function Header() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'cormorant',
+              fontFamily: 'cormorant Garamond',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              
               color: 'black',
               textDecoration: 'none',
             }}

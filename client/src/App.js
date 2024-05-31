@@ -10,11 +10,20 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Header from './Components/Header';
 
+import { createTheme, ThemeProvider } from '@mui/material';
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Cormorant Garamond'
+    ].join(','),
+  },});
+
 function App() {
  
 
   return <BrowserRouter>
   <Header />
+  <ThemeProvider theme={theme}>
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/Logout' element={<Home />} />
@@ -23,6 +32,7 @@ function App() {
       <Route path='/signup' element={<SignUp />} />
       <Route path='/profile' element={<Profile />} />
     </Routes>
+    </ThemeProvider>
   </BrowserRouter>
 }
 

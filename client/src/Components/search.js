@@ -7,6 +7,7 @@ import Chip from "@mui/material/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 
 import RecipeReviewCard from "./recipe_card";
+import { Typography } from "@mui/material";
 
 let API = "013fd8b3a54f4520995e24120d4dc79d";
 
@@ -56,7 +57,8 @@ export default function FullWidthTextField({
           display:"flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems:"center"
+          alignItems:"center",
+          
           
         }}
       >
@@ -99,8 +101,16 @@ export default function FullWidthTextField({
           Search Recipes
         </Button>
         </Box>
-
-        <ul>
+        <Box>
+          <Typography sx={{color:"gray"}}>Ingrediants</Typography>
+        </Box>
+<Box sx={{
+          display:"flex",
+          flexDirection:"row",
+          flexWrap:"wrap",
+         
+        }}>
+        
           {recipeInput.map((foodItem) => (
             <ul key={foodItem}>
               <Chip
@@ -110,8 +120,8 @@ export default function FullWidthTextField({
               />
             </ul>
           ))}
-        </ul>
-
+        
+        </Box>
         <Box sx={{
           display:"flex",
           flexWrap:"wrap",
