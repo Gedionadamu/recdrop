@@ -42,6 +42,11 @@ export default function FullWidthTextField({
         `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API}&ingredients=${apirecipe}&number=5`
       );
       const json = await response.json();
+      if(json.code === 402){
+        console.log("Api token used up! Get your Money up Man!!!")
+        return
+        
+      }
       recieved = [];
       recieved.push(json);
 
