@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { signinFailure, singInSuccess, singinStart } from '../redux/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function Copyright(props) {
@@ -34,13 +36,13 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const {loading, error} = useSelector((state)=>state.user)
     const navigate = useNavigate()
-  const handleSubmit = (event) => {
+    const dispatch = useDispatch()
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-        setLoading(true)
+        dispatch(singinStart())
         const data = new FormData(event.currentTarget);
         const res =  fetch("http://localhost:3001/server/auth/signin", {
             method:'POST',
@@ -54,16 +56,20 @@ export default function SignIn() {
               email: data.get('email'),
               password: data.get('password'),
             })
-            
+          
         });
-        setLoading(false);
-        setError(false)
+       const info = await res.json()
+       dispatch(singInSuccess(info))
+       if(info.success === false){
+        dispatch(signinFailure())
+        console.log("sign in failure")
+        return
+       }
         navigate('/')
         
       }
       catch(error){
-        setLoading(false)
-        setError(true)
+        dispatch(signinFailure(error))
 
       }
     
